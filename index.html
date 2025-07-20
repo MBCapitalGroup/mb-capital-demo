@@ -966,35 +966,98 @@
             }
         }
         
-        // Team member data - loaded dynamically from API
+        // Team member data - static for deployment
         let teamMembers = {};
         
-        // Function to load team members from API
+        // Static team members data
+        const staticTeamMembers = [
+            {
+                id: 1,
+                name: "Michael Bachmann",
+                title: "Principal", 
+                photoUrl: "attached_assets/image_1752985000064.png",
+                bio: "Michael Bachmann is the Principal of MB Capital Group with over 15 years of experience in real estate investing and entrepreneurship. His journey began at age 18 when he became a Domino's Pizza franchisee, successfully operating the business until age 21. This early entrepreneurial experience taught him valuable lessons about business operations, customer service, and financial management that he applies to real estate today.<br><br>After transitioning from the restaurant industry, Michael discovered his passion for real estate investing and has since specialized in multifamily syndications. He focuses exclusively on Class B and C apartment buildings, typically 2-4 story properties that provide stable cash flow and long-term appreciation potential for accredited investors.<br><br>Michael's investment philosophy centers on thorough market analysis, conservative underwriting, and transparent communication with limited partners. He has successfully guided numerous syndication deals, consistently delivering quarterly distributions and building long-term wealth for his investor partners. His expertise spans market analysis, property acquisition, asset management, and investor relations."
+            },
+            {
+                id: 2,
+                name: "Makeba Hart aka the wholesaling baddest bitch around",
+                title: "Strategic Advisor",
+                photoUrl: "attached_assets/image_1752985082173.png", 
+                bio: "Makeba Hart is a dynamic force in the real estate industry, known for her expertise in wholesaling and strategic market analysis. With her bold approach and proven track record, she has earned recognition as one of the most successful wholesaling professionals in the Kansas City market.<br><br>Makeba brings invaluable strategic insight to MB Capital Group's investment decisions, particularly in identifying emerging market opportunities and off-market property acquisition strategies. Her extensive network of real estate professionals, contractors, and market contacts provides MB Capital Group with competitive advantages in sourcing quality investment properties.<br><br>Her direct approach to business and exceptional market knowledge make her an essential advisor for the company's growth strategy and deal flow management."
+            },
+            {
+                id: 3,
+                name: "Dave Lindahl",
+                title: "Mentor & Real Estate Expert",
+                photoUrl: "attached_assets/image_1752985252735.png",
+                bio: "Dave Lindahl is a nationally recognized real estate expert and mentor with decades of experience in multifamily investing. As a bestselling author and speaker, Dave has guided thousands of investors toward building wealth through strategic real estate investments.<br><br>His expertise in multifamily syndications, market analysis, and investor education provides invaluable guidance to MB Capital Group's investment strategy. Dave's proven methodologies for property evaluation, due diligence, and portfolio management help ensure that MB Capital Group maintains the highest standards in property selection and investor protection.<br><br>Through his mentorship, MB Capital Group benefits from Dave's extensive knowledge of national real estate markets, emerging trends, and best practices for successful multifamily syndications."
+            },
+            {
+                id: 4,
+                name: "Scott Stafford", 
+                title: "Demographer",
+                photoUrl: "attached_assets/image_1752985334574.png",
+                bio: "Scott Stafford brings critical demographic analysis and market research expertise to MB Capital Group's investment decisions. His deep understanding of population trends, economic indicators, and market dynamics helps identify the most promising investment opportunities in target markets.<br><br>Scott's demographic analysis capabilities enable MB Capital Group to make data-driven investment decisions based on population growth patterns, employment trends, income demographics, and housing demand forecasts. This analytical approach helps ensure that property acquisitions are positioned in markets with strong fundamentals and growth potential.<br><br>His research methodology and market intelligence provide MB Capital Group with competitive advantages in identifying emerging markets and timing investment decisions for optimal returns."
+            },
+            {
+                id: 5,
+                name: "Eric Stewart",
+                title: "Commercial Mortgage Broker",
+                photoUrl: "attached_assets/image_1752985475425.png",
+                bio: "Eric Stewart serves as MB Capital Group's commercial mortgage broker, bringing extensive expertise in commercial real estate financing and lending relationships. His deep knowledge of the lending landscape ensures that MB Capital Group secures optimal financing terms for property acquisitions.<br><br>Eric's established relationships with banks, credit unions, and private lenders provide access to competitive financing options that enhance investment returns. His expertise in loan structuring, underwriting requirements, and market conditions helps MB Capital Group navigate complex financing scenarios and close deals efficiently.<br><br>His guidance on financing strategy and market conditions helps MB Capital Group maintain flexibility and leverage opportunities while managing financial risk appropriately."
+            },
+            {
+                id: 6,
+                name: "Jeannie Orlowski",
+                title: "Mentor & Real Estate Coach", 
+                photoUrl: "attached_assets/image_1752985628794.png",
+                bio: "Jeannie Orlowski is an experienced real estate coach and mentor who brings valuable expertise in investor education and strategic guidance to MB Capital Group. Her background in coaching real estate investors provides insights into investor needs, concerns, and best practices for investor relations.<br><br>Jeannie's coaching experience helps MB Capital Group maintain excellent communication with limited partners and ensure that investor education remains a priority throughout the investment process. Her understanding of investor psychology and expectations contributes to the company's approach to transparency and investor satisfaction.<br><br>Her mentorship helps MB Capital Group continuously improve their investor relations processes and maintain the highest standards of professionalism in all investor communications."
+            },
+            {
+                id: 7,
+                name: "Dean Graziosi",
+                title: "Mentor & Entrepreneur",
+                photoUrl: "attached_assets/image_1752985671641.png",
+                bio: "Dean Graziosi is a New York Times bestselling author, entrepreneur, and mentor who provides strategic business guidance to MB Capital Group. His extensive experience in building successful businesses and his expertise in market analysis contribute valuable perspective to the company's growth strategy.<br><br>Dean's entrepreneurial background and business development expertise help MB Capital Group maintain focus on scalable business practices and strategic growth opportunities. His insights into market trends and business optimization contribute to the company's operational efficiency and long-term success.<br><br>Through his mentorship, MB Capital Group benefits from Dean's proven strategies for business growth, market positioning, and maintaining competitive advantages in the real estate syndication industry."
+            },
+            {
+                id: 8,
+                name: "Tom Krol",
+                title: "Mentor & Podcast Host",
+                photoUrl: "attached_assets/image_1752985802815.png", 
+                bio: "Tom Krol is the host of the Wholesaling Inc. podcast and brings extensive expertise in real estate investing and market education to MB Capital Group. His experience in real estate education and market analysis provides valuable insights for the company's investment strategy and market positioning.<br><br>Tom's background in wholesaling and real estate education helps MB Capital Group stay current with market trends, emerging opportunities, and best practices in real estate investing. His podcast platform and industry connections provide access to market intelligence and networking opportunities.<br><br>His mentorship contributes to MB Capital Group's commitment to continuous learning and staying ahead of market trends in the competitive real estate syndication industry."
+            }
+        ];
+        
+        // Function to load team members - static version for deployment
         async function loadTeamMembers() {
             try {
-                console.log('Loading team members from API...');
-                const response = await fetch('/api/team');
-                const members = await response.json();
+                console.log('Loading team members from static data...');
+                const members = staticTeamMembers;
                 console.log('Team members loaded:', members.length, 'members');
                 
-                // Filter only visible members and sort by display order
-                const visibleMembers = members
-                    .filter(member => member.name)
-                    .sort((a, b) => (a.id || 0) - (b.id || 0));
-                
-                console.log('Visible members after filtering:', visibleMembers.length);
-                console.log('Team member names:', visibleMembers.map(m => m.name));
-                
-                // Update team members object for modal use
+                // Store team members globally for modal access
                 teamMembers = {};
-                visibleMembers.forEach((member, index) => {
-                    teamMembers[`member${index}`] = {
+                
+                // Filter visible members (first 8 for display)
+                const visibleMembers = members.slice(0, 8).map((member, index) => {
+                    const memberId = `member${index}`;
+                    teamMembers[memberId] = {
+                        image: member.photoUrl,
                         name: member.name,
                         title: member.title,
-                        image: member.photoUrl,
+                        bio: member.bio
+                    };
+                    return {
+                        photoUrl: member.photoUrl,
+                        name: member.name,
+                        title: member.title,
                         bio: member.bio
                     };
                 });
+                
+                console.log('Visible members after filtering:', visibleMembers.length);
+                console.log('Team member names:', visibleMembers.map(m => m.name));
                 
                 // Update the team section
                 updateTeamSection(visibleMembers);
