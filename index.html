@@ -311,9 +311,9 @@
                     <li class="dropdown">
                         <a href="javascript:void(0)">Tools ▼</a>
                         <div class="dropdown-content">
-                            <a href="/tax-calculator.html">Tax Calculator</a>
-                            <a href="/ai-recommendations.html">AI Recommendations</a>
-                            <a href="/investor-portal.html">Investor Portal</a>
+                            <a href="#" onclick="alert('Tax Calculator: Calculate depreciation benefits and tax savings from multifamily real estate investments. This tool helps investors understand potential tax advantages including cost segregation benefits.'); return false;">Tax Calculator</a>
+                            <a href="#" onclick="alert('AI Recommendations: Get personalized investment recommendations based on your budget, risk tolerance, and investment timeline. Our AI analyzes market data to suggest optimal multifamily opportunities.'); return false;">AI Recommendations</a>
+                            <a href="#" onclick="alert('Investor Portal: Access your investment portfolio, quarterly reports, and K1 tax documents. Contact us to set up your secure investor account.'); return false;">Investor Portal</a>
                         </div>
                     </li>
                     <li><a onclick="scrollToSection('contact')">Contact</a></li>
@@ -381,8 +381,8 @@
             <p style="text-align: center; font-size: 1rem; color: hsl(43, 96%, 49%); font-weight: 600; margin-bottom: 3rem;">
                 Click on any team member to read their full biography
             </p>
-            <div class="team-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; max-width: 1200px; margin-left: auto; margin-right: auto;">
-                <!-- Team members will be loaded dynamically from API -->
+            <div id="team-container" class="team-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; max-width: 1200px; margin-left: auto; margin-right: auto;">
+                <!-- Team members will be loaded dynamically from embedded data -->
             </div>
         </div>
     </section>
@@ -443,8 +443,8 @@
                 Expert insights on multifamily real estate investing, market analysis, tax strategies, and building wealth through apartment syndications.
             </p>
             
-            <div id="blog-grid" class="blog-grid">
-                <!-- Blog posts will be loaded dynamically from API -->
+            <div id="blog-posts-container" class="blog-grid">
+                <!-- Blog posts will be loaded dynamically from embedded data -->
             </div>
         </div>
     </section>
@@ -719,7 +719,7 @@
             <div style="border-top: 1px solid #4b5563; padding-top: 2rem; text-align: center; color: #9ca3af;">
                 <p>&copy; 2024 MB Capital Group. All rights reserved.</p>
                 <p style="margin-top: 1rem; font-size: 0.8rem;">
-                    <a href="/admin" style="color: #6b7280; text-decoration: none; opacity: 0.7;" onmouseover="this.style.color='white'" onmouseout="this.style.color='#6b7280'">Admin Login</a>
+                    <!-- Admin access removed for static deployment -->
                 </p>
             </div>
         </div>
@@ -782,60 +782,18 @@
             window.open('/blog/' + slug, '_blank');
         }
         
-        // Handle investor form submission
-        document.getElementById('investorForm').addEventListener('submit', async function(e) {
+        // Handle investor form submission (static version)
+        document.getElementById('investorForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-            
-            try {
-                const response = await fetch('/api/investors', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data),
-                });
-                
-                if (response.ok) {
-                    alert('Thank you for your interest! We will contact you soon with investment opportunities.');
-                    this.reset();
-                } else {
-                    alert('There was an error submitting your information. Please try again.');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('There was an error submitting your information. Please try again.');
-            }
+            alert('Thank you for your interest! This is a demo site. Please contact us directly at (816) 896-6938 or michael@mbcapitalgroup.com for investment opportunities.');
+            this.reset();
         });
         
-        // Handle newsletter form submission
-        document.getElementById('newsletterForm').addEventListener('submit', async function(e) {
+        // Handle newsletter form submission (static version)
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-            
-            try {
-                const response = await fetch('/api/newsletter', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data),
-                });
-                
-                if (response.ok) {
-                    alert('Thank you for subscribing! Check your email for your FREE "7 Reasons Why Smart Investors Choose Multifamily Syndications" report plus monthly market updates.');
-                    this.reset();
-                } else {
-                    alert('There was an error subscribing. Please try again.');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('There was an error subscribing. Please try again.');
-            }
+            alert('Thank you for your interest! This is a demo site. Please contact us directly at michael@mbcapitalgroup.com to join our newsletter and receive investment updates.');
+            this.reset();
         });
         
         // Add smooth scrolling for all anchor links
@@ -1300,7 +1258,102 @@ window.faqs = [
 // Function to load team members (now from embedded data)
 function loadTeamMembers() {
     console.log('Loading team members from embedded data...');
-    renderTeamMembers(window.teamMembers);
+    const teamContainer = document.getElementById('team-container');
+    if (!teamContainer || !window.teamMembers) return;
+    
+    teamContainer.innerHTML = '';
+    
+    window.teamMembers.forEach(member => {
+        const memberCard = document.createElement('div');
+        memberCard.className = 'team-member-card';
+        memberCard.style.cssText = `
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        `;
+        
+        memberCard.innerHTML = `
+            <div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden; margin: 0 auto 1.5rem; border: 4px solid hsl(43, 96%, 49%);">
+                <img src="${member.image || member.photoUrl}" alt="${member.name}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face'">
+            </div>
+            <h3 style="color: hsl(219, 79%, 24%); margin-bottom: 0.5rem; font-size: 1.25rem;">${member.name}</h3>
+            <p style="color: hsl(43, 96%, 49%); font-weight: 600; margin-bottom: 1rem;">${member.title}</p>
+            <p style="color: #64748b; font-size: 0.9rem; line-height: 1.5;">${member.bio.substring(0, 150)}...</p>
+        `;
+        
+        // Add click event to show full bio
+        memberCard.addEventListener('click', () => showTeamMemberModal(member));
+        
+        // Add hover effects
+        memberCard.addEventListener('mouseenter', () => {
+            memberCard.style.transform = 'translateY(-5px)';
+            memberCard.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.15)';
+        });
+        
+        memberCard.addEventListener('mouseleave', () => {
+            memberCard.style.transform = 'translateY(0)';
+            memberCard.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+        });
+        
+        teamContainer.appendChild(memberCard);
+    });
+}
+
+// Show team member modal
+function showTeamMemberModal(member) {
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    `;
+    
+    const modalContent = document.createElement('div');
+    modalContent.style.cssText = `
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        max-width: 500px;
+        max-height: 80vh;
+        overflow-y: auto;
+        margin: 2rem;
+        position: relative;
+    `;
+    
+    modalContent.innerHTML = `
+        <button onclick="this.closest('.modal').remove()" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #64748b;">&times;</button>
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden; margin: 0 auto 1rem; border: 4px solid hsl(43, 96%, 49%);">
+                <img src="${member.image || member.photoUrl}" alt="${member.name}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face'">
+            </div>
+            <h3 style="color: hsl(219, 79%, 24%); margin-bottom: 0.5rem; font-size: 1.5rem;">${member.name}</h3>
+            <p style="color: hsl(43, 96%, 49%); font-weight: 600; font-size: 1.1rem;">${member.title}</p>
+        </div>
+        <p style="color: #64748b; line-height: 1.6;">${member.bio}</p>
+    `;
+    
+    modal.className = 'modal';
+    modal.appendChild(modalContent);
+    
+    // Close on background click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.remove();
+        }
+    });
+    
+    document.body.appendChild(modal);
 }
 
 // Function to load blog posts (now from embedded data)
@@ -1315,13 +1368,15 @@ function loadBlogPosts() {
                     post.title.toLowerCase().includes('tax') ? '📊' : 
                     post.title.toLowerCase().includes('market') ? '📈' : '🏢';
         return `
-        <div class="blog-post">
-            <div class="blog-icon">${icon}</div>
-            <h3>${post.title}</h3>
-            <p class="blog-excerpt">${post.excerpt}</p>
-            <div class="blog-meta">
-                <span>By ${post.author}</span>
-                <span>${new Date(post.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+        <div class="blog-card">
+            <div class="blog-card-content">
+                <div class="blog-icon"><span>${icon}</span></div>
+                <h3 class="blog-title">${post.title}</h3>
+                <p class="blog-excerpt">${post.excerpt}</p>
+                <div class="blog-meta" style="color: #94a3b8; font-size: 0.9rem;">
+                    <span>By ${post.author}</span> • 
+                    <span>${new Date(post.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                </div>
             </div>
         </div>`;
     }).join('');
@@ -1365,6 +1420,15 @@ function toggleFAQ(index) {
         question.style.color = '';
     }
 }
+
+// Initialize everything when document is ready
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Document ready - loading embedded data...');
+    loadTeamMembers();
+    loadBlogPosts();
+    loadFAQs();
+    console.log('All embedded data loaded successfully');
+});
 </script>
 
 </body>
