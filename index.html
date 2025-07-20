@@ -123,6 +123,117 @@
             height: 10px;
             background: transparent;
         }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+        }
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            top: 15px;
+            right: 20px;
+        }
+        .close:hover {
+            color: black;
+        }
+        .modal-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .modal-header img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+        .modal-header h2 {
+            color: hsl(219, 79%, 24%);
+            margin-bottom: 0.5rem;
+        }
+        .modal-header .title {
+            color: hsl(43, 96%, 49%);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        .modal-bio {
+            color: #64748b;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+        
+        /* Exit popup styles */
+        .exit-popup {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+        }
+        
+        .exit-popup-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Exit intent popup styles */
+        .exit-popup {
+            display: none;
+            position: fixed;
+            z-index: 10001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+        }
+        .exit-popup-content {
+            background: white;
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+        }
+        .exit-popup .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+        }
         .hero { background: linear-gradient(135deg, hsl(219, 79%, 24%) 0%, hsl(219, 79%, 18%) 100%); color: white; padding: 4rem 0; text-align: center; position: relative; }
         .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('/attached_assets/Multifamily property image_1752195421263.png') center/cover; opacity: 0.3; }
         .hero-content { position: relative; z-index: 2; }
@@ -271,48 +382,7 @@
                 Click on any team member to read their full biography
             </p>
             <div class="team-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; max-width: 1200px; margin-left: auto; margin-right: auto;">
-                <div class="team-member" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;" onclick="openTeamModal('michael')">
-                    <img src="/attached_assets/image_1752550945242.png" alt="Michael Bachmann" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin: 0 auto 1.5rem; display: block;">
-                    <h3 style="color: hsl(219, 79%, 24%); margin-bottom: 0.5rem;">Michael Bachmann</h3>
-                    <p style="color: hsl(43, 96%, 49%); font-weight: 600; margin-bottom: 1rem;">Principal</p>
-                    <p style="color: #64748b; line-height: 1.6;">15+ years in property investing with extensive experience in flips, rehabs, and rental properties. Leading MB Capital Group's expansion into multifamily syndications with comprehensive real estate education and proven success.</p>
-                </div>
-                <div class="team-member" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;" onclick="openTeamModal('dave')">
-                    <img src="/attached_assets/image_1752550982945.png" alt="Dave Lindahl" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin: 0 auto 1.5rem; display: block;">
-                    <h3 style="color: hsl(219, 79%, 24%); margin-bottom: 0.5rem;">Dave Lindahl</h3>
-                    <p style="color: hsl(43, 96%, 49%); font-weight: 600; margin-bottom: 1rem;">Mentor</p>
-                    <p style="color: #64748b; line-height: 1.6;">Renowned real estate investor and mentor with expertise in multifamily properties. Author and speaker who has helped thousands of investors build wealth through real estate.</p>
-                </div>
-                <div class="team-member" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;" onclick="openTeamModal('scott')">
-                    <img src="/attached_assets/image_1752551006390.png" alt="Scott Stafford" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin: 0 auto 1.5rem; display: block;">
-                    <h3 style="color: hsl(219, 79%, 24%); margin-bottom: 0.5rem;">Scott Stafford</h3>
-                    <p style="color: hsl(43, 96%, 49%); font-weight: 600; margin-bottom: 1rem;">Demographer</p>
-                    <p style="color: #64748b; line-height: 1.6;">Expert in market analysis and demographic research, providing crucial insights for identifying high-potential multifamily investment opportunities in growing markets.</p>
-                </div>
-                <div class="team-member" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;" onclick="openTeamModal('eric')">
-                    <img src="/attached_assets/image_1752551040985.png" alt="Eric Stewart" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin: 0 auto 1.5rem; display: block;">
-                    <h3 style="color: hsl(219, 79%, 24%); margin-bottom: 0.5rem;">Eric Stewart</h3>
-                    <p style="color: hsl(43, 96%, 49%); font-weight: 600; margin-bottom: 1rem;">Commercial Mortgage Broker</p>
-                    <p style="color: #64748b; line-height: 1.6;">Specialized in commercial real estate financing with deep connections to lending institutions, ensuring optimal financing solutions for our multifamily acquisitions.</p>
-                </div>
-                <div class="team-member" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;" onclick="openTeamModal('jeannie')">
-                    <img src="/attached_assets/image_1752551064698.png" alt="Jeannie Orlowski" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin: 0 auto 1.5rem; display: block;">
-                    <h3 style="color: hsl(219, 79%, 24%); margin-bottom: 0.5rem;">Jeannie Orlowski</h3>
-                    <p style="color: hsl(43, 96%, 49%); font-weight: 600; margin-bottom: 1rem;">Mentor & Coach</p>
-                    <p style="color: #64748b; line-height: 1.6;">Experienced real estate mentor and coach with a focus on helping investors build sustainable wealth through strategic property investments and proven systems.</p>
-                </div>
-                <div class="team-member" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;" onclick="openTeamModal('dean')">
-                    <img src="/attached_assets/image_1752551094204.png" alt="Dean Graziosi" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin: 0 auto 1.5rem; display: block;">
-                    <h3 style="color: hsl(219, 79%, 24%); margin-bottom: 0.5rem;">Dean Graziosi</h3>
-                    <p style="color: hsl(43, 96%, 49%); font-weight: 600; margin-bottom: 1rem;">Mentor</p>
-                    <p style="color: #64748b; line-height: 1.6;">New York Times bestselling author and real estate expert. Entrepreneur and investor who has helped millions learn about real estate investing through education and mentorship.</p>
-                </div>
-                <div class="team-member" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;" onclick="openTeamModal('tom')">
-                    <img src="/attached_assets/image_1752551131235.png" alt="Tom Krol" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin: 0 auto 1.5rem; display: block;">
-                    <h3 style="color: hsl(219, 79%, 24%); margin-bottom: 0.5rem;">Tom Krol</h3>
-                    <p style="color: hsl(43, 96%, 49%); font-weight: 600; margin-bottom: 1rem;">Mentor & Coach</p>
-                    <p style="color: #64748b; line-height: 1.6;">Real estate investing coach and host of the Wholesaling Inc. podcast. Expert in wholesaling strategies and building successful real estate investment businesses.</p>
-                </div>
+                <!-- Team members will be loaded dynamically from API -->
             </div>
         </div>
     </section>
@@ -668,6 +738,37 @@
         </div>
     </div>
 
+    <!-- Exit Intent Popup -->
+    <div id="exitPopup" class="exit-popup">
+        <div class="exit-popup-content">
+            <span class="close" onclick="closeExitPopup()">&times;</span>
+            <h2 style="color: hsl(219, 79%, 24%); margin-bottom: 1rem;">Wait! Don't Miss Out!</h2>
+            <p style="color: #64748b; margin-bottom: 1.5rem; line-height: 1.6;">
+                Get exclusive insights on multifamily real estate investing delivered directly to your inbox. Join our newsletter for market updates, tax strategies, and investment opportunities.
+            </p>
+            <form id="exitIntentForm" style="margin-bottom: 1rem;">
+                <div style="margin-bottom: 1rem;">
+                    <input type="text" name="firstName" placeholder="First Name" required style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1rem;">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <input type="text" name="lastName" placeholder="Last Name" required style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1rem;">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <input type="email" name="email" placeholder="Email Address" required style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1rem;">
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <input type="tel" name="phone" placeholder="Phone Number" required style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1rem;">
+                </div>
+                <button type="submit" style="width: 100%; background: hsl(43, 96%, 49%); color: hsl(219, 79%, 24%); border: none; padding: 1rem; font-size: 1rem; font-weight: 600; border-radius: 8px; cursor: pointer;">
+                    Get Free Investment Insights
+                </button>
+            </form>
+            <p style="font-size: 0.85rem; color: #9ca3af;">
+                Your information is completely private and never shared.
+            </p>
+        </div>
+    </div>
+
     <script>
         function scrollToSection(sectionId) {
             const element = document.getElementById(sectionId);
@@ -779,11 +880,10 @@
             }
         }
         
-        // Load blog posts dynamically from API
+        // Load blog posts from embedded data
         async function loadBlogPosts() {
             try {
-                const response = await fetch('/api/blog');
-                const blogPosts = await response.json();
+                const blogPosts = window.blogPosts || [];
                 
                 const blogGrid = document.getElementById('blog-grid');
                 blogGrid.innerHTML = '';
@@ -828,11 +928,10 @@
             window.open(`/blog/${slug}`, '_blank');
         }
         
-        // Load FAQs dynamically from database
+        // Load FAQs from embedded data
         async function loadFAQs() {
             try {
-                const response = await fetch('/api/faqs');
-                const faqs = await response.json();
+                const faqs = window.faqs || [];
                 
                 const faqContainer = document.getElementById('faq-container');
                 const loadingDiv = document.getElementById('faq-loading');
@@ -880,8 +979,8 @@
                 
                 // Filter only visible members and sort by display order
                 const visibleMembers = members
-                    .filter(member => member.isVisible)
-                    .sort((a, b) => a.displayOrder - b.displayOrder);
+                    .filter(member => member.name)
+                    .sort((a, b) => (a.id || 0) - (b.id || 0));
                 
                 console.log('Visible members after filtering:', visibleMembers.length);
                 console.log('Team member names:', visibleMembers.map(m => m.name));
@@ -945,12 +1044,20 @@
         function openTeamModal(memberId) {
             const member = teamMembers[memberId];
             if (member) {
-                document.getElementById('modalImage').src = member.image;
-                document.getElementById('modalImage').alt = member.name;
-                document.getElementById('modalName').textContent = member.name;
-                document.getElementById('modalTitle').textContent = member.title;
-                document.getElementById('modalBio').innerHTML = member.bio;
-                document.getElementById('teamModal').style.display = 'block';
+                const modalImage = document.getElementById('modalImage');
+                const modalName = document.getElementById('modalName');
+                const modalTitle = document.getElementById('modalTitle');
+                const modalBio = document.getElementById('modalBio');
+                const teamModal = document.getElementById('teamModal');
+                
+                if (modalImage && modalName && modalTitle && modalBio && teamModal) {
+                    modalImage.src = member.image;
+                    modalImage.alt = member.name;
+                    modalName.textContent = member.name;
+                    modalTitle.textContent = member.title;
+                    modalBio.innerHTML = member.bio;
+                    teamModal.style.display = 'block';
+                }
             }
         }
         
@@ -959,11 +1066,76 @@
             document.getElementById('teamModal').style.display = 'none';
         }
         
+        // Exit intent popup functionality
+        let exitIntentShown = false;
+        
+        function showExitPopup() {
+            if (!exitIntentShown) {
+                document.getElementById('exitPopup').style.display = 'block';
+                exitIntentShown = true;
+            }
+        }
+        
+        function closeExitPopup() {
+            document.getElementById('exitPopup').style.display = 'none';
+        }
+        
+        // Mouse leave detection for exit intent
+        document.addEventListener('mouseleave', function(e) {
+            if (e.clientY <= 0 && !exitIntentShown) {
+                showExitPopup();
+            }
+        });
+        
+        // Mobile scroll detection for exit intent
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop < lastScrollTop && scrollTop <= 100 && !exitIntentShown) {
+                showExitPopup();
+            }
+            lastScrollTop = scrollTop;
+        });
+        
+        // Handle exit intent form submission
+        document.getElementById('exitIntentForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            // Mark as exit intent subscriber
+            data.source = 'exit_intent';
+            
+            try {
+                const response = await fetch('/api/newsletter', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+                
+                if (response.ok) {
+                    alert('Thank you for subscribing! Check your email for exclusive investment insights.');
+                    closeExitPopup();
+                } else {
+                    alert('There was an error subscribing. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('There was an error subscribing. Please try again.');
+            }
+        });
+        
         // Close modal when clicking outside of it
         window.onclick = function(event) {
             const modal = document.getElementById('teamModal');
+            const exitPopup = document.getElementById('exitPopup');
             if (event.target === modal) {
                 closeTeamModal();
+            }
+            if (event.target === exitPopup) {
+                closeExitPopup();
             }
         }
         
@@ -974,5 +1146,237 @@
         
         console.log('MB Capital Group website loaded successfully with blog and admin login functionality');
     </script>
+
+<script>
+// Embedded team members data
+window.teamMembers = [
+  {
+    "id": 1,
+    "name": "Michael Bachmann",
+    "title": "Principal",
+    "image": "/attached_assets/image_1752550945242.png",
+    "bio": "Michael Bachmann began his entrepreneurial journey at just 18 years old when he became a Domino's Pizza franchisee, successfully operating the business until age 21. This early experience in business ownership and management laid the foundation for his transition into real estate investing. Over the past 15+ years, Michael has built extensive experience in property investing with proven success in flips, rehabs, and rental properties throughout Missouri markets. His comprehensive real estate education and hands-on experience in property acquisition, renovation, and management now drives MB Capital Group's strategic expansion into multifamily syndications. Michael's unique combination of entrepreneurial background and deep real estate expertise positions him to identify and execute value-add opportunities in Class B and C apartment buildings, delivering consistent returns to investor partners."
+  },
+  {
+    "id": 2,
+    "name": "Dave Lindahl",
+    "title": "Mentor",
+    "image": "/attached_assets/image_1752550982945.png",
+    "bio": "Dave Lindahl is a renowned real estate investor, mentor, and bestselling author with over two decades of experience in multifamily real estate investing. He has personally acquired and managed hundreds of rental units and has helped thousands of investors build wealth through strategic real estate investments. Dave is the author of several bestselling books on real estate investing and is a sought-after speaker at real estate conferences nationwide. His expertise in multifamily property analysis, financing strategies, and market selection provides invaluable guidance to MB Capital Group's investment approach and investor education programs."
+  },
+  {
+    "id": 3,
+    "name": "Scott Stafford",
+    "title": "Demographer",
+    "image": "/attached_assets/image_1752551006390.png",
+    "bio": "Scott Stafford brings specialized expertise in demographic analysis and market research to MB Capital Group's investment strategy. With advanced training in population trends, economic indicators, and geographic analysis, Scott provides crucial insights for identifying high-potential multifamily investment opportunities. His comprehensive market research capabilities help evaluate population growth, employment trends, income levels, and rental demand patterns in target markets. Scott's demographic expertise ensures that MB Capital Group's property acquisitions are positioned in markets with strong fundamentals and long-term growth potential, maximizing returns for investor partners."
+  },
+  {
+    "id": 4,
+    "name": "Eric Stewart",
+    "title": "Commercial Mortgage Broker",
+    "image": "/attached_assets/image_1752551040985.png",
+    "bio": "Eric Stewart is a specialized commercial mortgage broker with extensive experience in multifamily property financing. His deep relationships with lending institutions, including banks, credit unions, and alternative lenders, enable MB Capital Group to secure optimal financing solutions for property acquisitions. Eric's expertise spans conventional mortgages, bridge loans, DSCR loans, and specialized multifamily financing products. His thorough understanding of underwriting requirements, loan structures, and market conditions ensures that MB Capital Group can move quickly on investment opportunities while securing the most favorable terms for each acquisition."
+  },
+  {
+    "id": 5,
+    "name": "Jeannie Orlowski",
+    "title": "Mentor & Coach",
+    "image": "/attached_assets/image_1752551064698.png",
+    "bio": "Jeannie Orlowski is an experienced real estate mentor and coach who specializes in helping investors build sustainable wealth through strategic property investments. With years of experience in real estate education and investor coaching, Jeannie brings valuable insights to MB Capital Group's investor relations and education programs. Her expertise in investment psychology, goal setting, and wealth-building strategies helps investors understand the long-term benefits of multifamily syndications. Jeannie's coaching background ensures that MB Capital Group's investors receive comprehensive education and support throughout their investment journey."
+  },
+  {
+    "id": 6,
+    "name": "Dean Graziosi",
+    "title": "Mentor",
+    "image": "/attached_assets/image_1752551094204.png",
+    "bio": "Dean Graziosi is a New York Times bestselling author, entrepreneur, and real estate expert who has helped millions of people learn about real estate investing and entrepreneurship. With multiple bestselling books and decades of experience in real estate markets, Dean provides strategic mentorship to MB Capital Group's approach to multifamily investing. His expertise in market psychology, investment timing, and wealth-building strategies contributes to the company's investor education and market analysis capabilities. Dean's proven track record in identifying market opportunities and his commitment to investor education align perfectly with MB Capital Group's mission of delivering superior returns through multifamily syndications."
+  },
+  {
+    "id": 7,
+    "name": "Tom Krol",
+    "title": "Mentor & Coach",
+    "image": "/attached_assets/image_1752551131235.png",
+    "bio": "Tom Krol is a real estate investing coach and the host of the Wholesaling Inc. podcast, one of the most popular real estate investing podcasts with hundreds of thousands of listeners. Tom is an expert in wholesaling strategies, deal analysis, and building successful real estate investment businesses. His extensive experience in deal sourcing, market analysis, and investor education provides valuable insights to MB Capital Group's property acquisition and investor relations strategies. Tom's proven systems for identifying and evaluating investment opportunities contribute to the company's ability to source high-quality multifamily properties in target markets."
+  }
+];
+
+// Embedded blog posts data
+window.blogPosts = [
+  {
+    "id": 1,
+    "title": "What to Expect in the 2025 Multifamily Market: A Strategic Outlook for Midwest Investors",
+    "slug": "multifamily-market-outlook-2025",
+    "excerpt": "The 2025 multifamily market presents unique opportunities for strategic investors. With interest rates stabilizing and demographic shifts favoring rental demand, Class B and C properties in Midwest markets are positioned for strong performance.",
+    "content": "The multifamily real estate market in 2025 offers compelling opportunities for investors who understand the evolving landscape. With interest rates showing signs of stabilization after the volatile period of 2022-2024, and demographic trends strongly favoring rental housing demand, Class B and C properties in Midwest markets are positioned for exceptional performance...",
+    "author": "Michael Bachmann",
+    "publishedAt": "2024-12-15T00:00:00Z",
+    "published": true
+  },
+  {
+    "id": 2,
+    "title": "How AI Is Transforming Multifamily Property Management and Investment Analysis",
+    "slug": "ai-transforming-multifamily-management",
+    "excerpt": "Artificial intelligence is revolutionizing how we analyze, acquire, and manage multifamily properties. From predictive maintenance to tenant screening, AI tools are enhancing returns and reducing operational risks.",
+    "content": "The integration of artificial intelligence in multifamily real estate is creating unprecedented opportunities for investors and property managers. AI-powered tools are transforming every aspect of the investment process, from initial market analysis to ongoing property management...",
+    "author": "Michael Bachmann",
+    "publishedAt": "2024-11-20T00:00:00Z",
+    "published": true
+  },
+  {
+    "id": 3,
+    "title": "Tax Benefits of Multifamily Real Estate Syndications: Maximizing Your Investment Returns",
+    "slug": "tax-benefits-multifamily-syndications",
+    "excerpt": "Multifamily syndications offer substantial tax advantages including depreciation benefits, cost segregation opportunities, and potential for tax-deferred exchanges. Learn how these strategies can enhance your investment returns.",
+    "content": "Real estate syndications provide investors with powerful tax advantages that can significantly enhance overall returns. Understanding these benefits is crucial for maximizing the value of your multifamily investments...",
+    "author": "Michael Bachmann",
+    "publishedAt": "2024-10-25T00:00:00Z",
+    "published": true
+  },
+  {
+    "id": 4,
+    "title": "Market Analysis: Why Class B and C Multifamily Properties Outperform in Economic Uncertainty",
+    "slug": "class-b-c-properties-economic-resilience",
+    "excerpt": "During economic volatility, Class B and C multifamily properties demonstrate remarkable resilience. These assets provide stable cash flow and appreciation potential while offering affordable housing solutions.",
+    "content": "Economic uncertainty often reveals the true strength of different asset classes, and multifamily real estate has consistently proven its resilience. Class B and C properties, in particular, offer unique advantages during challenging economic periods...",
+    "author": "Michael Bachmann",
+    "publishedAt": "2024-09-30T00:00:00Z",
+    "published": true
+  }
+];
+
+// Embedded FAQ data
+window.faqs = [
+  {
+    "id": 1,
+    "question": "What is multifamily real estate syndication?",
+    "answer": "Multifamily real estate syndication is an investment structure where multiple investors pool their capital to purchase larger apartment buildings that would be difficult to acquire individually. MB Capital Group acts as the syndicator, handling property acquisition, management, and investor relations while investors receive quarterly distributions and share in the profits upon sale.",
+    "displayOrder": 1
+  },
+  {
+    "id": 2,
+    "question": "What is the minimum investment amount?",
+    "answer": "Our minimum investment typically ranges from 0,000 to 00,000 depending on the specific syndication opportunity. This allows accredited investors to participate in institutional-quality multifamily properties that would normally require millions of dollars to purchase outright.",
+    "displayOrder": 2
+  },
+  {
+    "id": 3,
+    "question": "How often do investors receive distributions?",
+    "answer": "Investors receive quarterly cash distributions from rental income, typically targeting an 8% preferred return. Additionally, investors participate in profits when the property is sold, usually after a 3-7 year hold period, with total returns targeting 15-20% IRR.",
+    "displayOrder": 3
+  },
+  {
+    "id": 4,
+    "question": "What types of properties does MB Capital Group target?",
+    "answer": "We focus exclusively on 2-4 story Class B and C multifamily properties. These buildings typically range from 20-200 units and are located in growing Midwest markets with strong rental demand, stable employment, and population growth.",
+    "displayOrder": 4
+  },
+  {
+    "id": 5,
+    "question": "How do you communicate with investors?",
+    "answer": "We provide regular updates through quarterly reports detailing property performance, financial statements, and market insights. Investors also receive annual K1 tax documents and have access to our investor portal for document access and investment tracking.",
+    "displayOrder": 5
+  },
+  {
+    "id": 6,
+    "question": "What are the tax benefits of investing in syndications?",
+    "answer": "Multifamily syndications offer significant tax advantages including depreciation benefits that can offset rental income, cost segregation studies that accelerate depreciation, and potential for 1031 exchanges to defer capital gains taxes.",
+    "displayOrder": 6
+  },
+  {
+    "id": 7,
+    "question": "How do I get started as an investor?",
+    "answer": "Start by completing our investor registration form to join our network. We will send you information about upcoming opportunities, and you can schedule a consultation with Michael Bachmann to discuss your investment goals and learn about our current offerings.",
+    "displayOrder": 7
+  },
+  {
+    "id": 8,
+    "question": "Can I exit my investment early?",
+    "answer": "Syndication investments are typically illiquid with hold periods of 3-7 years. While early exit options are limited, we focus on properties with strong fundamentals and clear exit strategies to ensure investors can achieve their expected returns within the projected timeline.",
+    "displayOrder": 8
+  }
+];
+
+// Function to load team members (now from embedded data)
+function loadTeamMembers() {
+    console.log('Loading team members from embedded data...');
+    if (window.teamMembers && window.teamMembers.length > 0) {
+        renderTeamMembers(window.teamMembers);
+    } else {
+        console.error('No team members data found');
+    }
+}
+
+// Function to load blog posts (now from embedded data)
+function loadBlogPosts() {
+    console.log('Loading blog posts from embedded data...');
+    const blogContainer = document.getElementById('blog-posts-container');
+    if (!blogContainer) return;
+    
+    if (window.blogPosts && window.blogPosts.length > 0) {
+        const blogHtml = window.blogPosts.map(post => {
+            const icon = post.title.toLowerCase().includes('ai') ? '🤖' : 
+                        post.title.toLowerCase().includes('tax') ? '📊' : 
+                        post.title.toLowerCase().includes('market') ? '📈' : '🏢';
+            return `
+            <div class="blog-post">
+                <div class="blog-icon">${icon}</div>
+                <h3>${post.title}</h3>
+                <p class="blog-excerpt">${post.excerpt}</p>
+                <div class="blog-meta">
+                    <span>By ${post.author}</span>
+                    <span>${new Date(post.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                </div>
+            </div>
+            `;
+        }).join('');
+        blogContainer.innerHTML = blogHtml;
+    } else {
+        blogContainer.innerHTML = '<p style="text-align: center; color: #888;">Blog posts will be available soon.</p>';
+    }
+}
+
+// Function to load FAQs (now from embedded data)
+function loadFAQs() {
+    console.log('Loading FAQs from embedded data...');
+    const faqContainer = document.getElementById('faq-container');
+    if (!faqContainer) return;
+    
+    if (window.faqs && window.faqs.length > 0) {
+        const faqHtml = window.faqs.map((faq, index) => `
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(${index})">
+                <span>${faq.question}</span>
+                <span class="faq-toggle" id="faq-toggle-${index}">+</span>
+            </div>
+            <div class="faq-answer" id="faq-answer-${index}" style="display: none;">
+                <p>${faq.answer}</p>
+            </div>
+        </div>
+        `).join('');
+        faqContainer.innerHTML = faqHtml;
+    } else {
+        faqContainer.innerHTML = '<p style="text-align: center; color: #888;">Unable to load FAQs. Please try refreshing the page.</p>';
+    }
+}
+
+// FAQ toggle functionality
+function toggleFAQ(index) {
+    const answer = document.getElementById('faq-answer-' + index);
+    const toggle = document.getElementById('faq-toggle-' + index);
+    const question = toggle.parentElement;
+    
+    if (answer.style.display === 'none' || answer.style.display === '') {
+        answer.style.display = 'block';
+        toggle.textContent = '-';
+        question.style.color = 'hsl(0, 70%, 50%)';
+    } else {
+        answer.style.display = 'none';
+        toggle.textContent = '+';
+        question.style.color = '';
+    }
+}
+</script>
+
 </body>
 </html>
