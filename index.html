@@ -311,9 +311,9 @@
                     <li class="dropdown">
                         <a href="javascript:void(0)">Tools ▼</a>
                         <div class="dropdown-content">
-                            <a href="/tax-calculator.html">Tax Calculator</a>
-                            <a href="/ai-recommendations.html">AI Recommendations</a>
-                            <a href="/investor-portal.html">Investor Portal</a>
+                            <a href="/tax-calculator.html" target="_blank">Tax Calculator</a>
+                            <a href="/ai-recommendations.html" target="_blank">AI Recommendations</a>
+                            <a href="/market-intelligence.html" target="_blank">Market Intelligence</a>
                         </div>
                     </li>
                     <li><a onclick="scrollToSection('contact')">Contact</a></li>
@@ -719,7 +719,7 @@
             <div style="border-top: 1px solid #4b5563; padding-top: 2rem; text-align: center; color: #9ca3af;">
                 <p>&copy; 2024 MB Capital Group. All rights reserved.</p>
                 <p style="margin-top: 1rem; font-size: 0.8rem;">
-                    <a href="/admin" style="color: #6b7280; text-decoration: none; opacity: 0.7;" onmouseover="this.style.color='white'" onmouseout="this.style.color='#6b7280'">Admin Login</a>
+                    <a href="#" onclick="alert('Admin Login - Coming Soon! Secure portal for managing website content and investor communications.')" style="color: #6b7280; text-decoration: none; opacity: 0.7;" onmouseover="this.style.color='white'" onmouseout="this.style.color='#6b7280'">Admin Login</a>
                 </p>
             </div>
         </div>
@@ -883,12 +883,14 @@
         // Load blog posts from embedded data
         async function loadBlogPosts() {
             try {
-                const blogPosts = window.blogPosts || [];
+                const allBlogPosts = window.blogPosts || [];
+                // Only show published posts
+                const publishedPosts = allBlogPosts.filter(post => post.isPublished);
                 
                 const blogGrid = document.getElementById('blog-grid');
                 blogGrid.innerHTML = '';
                 
-                blogPosts.forEach(post => {
+                publishedPosts.forEach(post => {
                     const icon = getPostIcon(post.title);
                     const blogCard = document.createElement('div');
                     blogCard.className = 'blog-card';
@@ -975,56 +977,56 @@
                 id: 1,
                 name: "Michael Bachmann",
                 title: "Principal", 
-                photoUrl: "attached_assets/image_1752985000064.png",
+                photoUrl: "/attached_assets/image_1752985000064.png",
                 bio: "Michael Bachmann is the Principal of MB Capital Group with over 15 years of experience in real estate investing and entrepreneurship. His journey began at age 18 when he became a Domino's Pizza franchisee, successfully operating the business until age 21. This early entrepreneurial experience taught him valuable lessons about business operations, customer service, and financial management that he applies to real estate today.<br><br>After transitioning from the restaurant industry, Michael discovered his passion for real estate investing and has since specialized in multifamily syndications. He focuses exclusively on Class B and C apartment buildings, typically 2-4 story properties that provide stable cash flow and long-term appreciation potential for accredited investors.<br><br>Michael's investment philosophy centers on thorough market analysis, conservative underwriting, and transparent communication with limited partners. He has successfully guided numerous syndication deals, consistently delivering quarterly distributions and building long-term wealth for his investor partners. His expertise spans market analysis, property acquisition, asset management, and investor relations."
             },
             {
                 id: 2,
                 name: "Makeba Hart aka the wholesaling baddest bitch around",
                 title: "Strategic Advisor",
-                photoUrl: "attached_assets/image_1752985082173.png", 
+                photoUrl: "/attached_assets/image_1752985082173.png", 
                 bio: "Makeba Hart is a dynamic force in the real estate industry, known for her expertise in wholesaling and strategic market analysis. With her bold approach and proven track record, she has earned recognition as one of the most successful wholesaling professionals in the Kansas City market.<br><br>Makeba brings invaluable strategic insight to MB Capital Group's investment decisions, particularly in identifying emerging market opportunities and off-market property acquisition strategies. Her extensive network of real estate professionals, contractors, and market contacts provides MB Capital Group with competitive advantages in sourcing quality investment properties.<br><br>Her direct approach to business and exceptional market knowledge make her an essential advisor for the company's growth strategy and deal flow management."
             },
             {
                 id: 3,
                 name: "Dave Lindahl",
                 title: "Mentor & Real Estate Expert",
-                photoUrl: "attached_assets/image_1752985252735.png",
+                photoUrl: "/attached_assets/image_1752985252735.png",
                 bio: "Dave Lindahl is a nationally recognized real estate expert and mentor with decades of experience in multifamily investing. As a bestselling author and speaker, Dave has guided thousands of investors toward building wealth through strategic real estate investments.<br><br>His expertise in multifamily syndications, market analysis, and investor education provides invaluable guidance to MB Capital Group's investment strategy. Dave's proven methodologies for property evaluation, due diligence, and portfolio management help ensure that MB Capital Group maintains the highest standards in property selection and investor protection.<br><br>Through his mentorship, MB Capital Group benefits from Dave's extensive knowledge of national real estate markets, emerging trends, and best practices for successful multifamily syndications."
             },
             {
                 id: 4,
                 name: "Scott Stafford", 
                 title: "Demographer",
-                photoUrl: "attached_assets/image_1752985334574.png",
+                photoUrl: "/attached_assets/image_1752985334574.png",
                 bio: "Scott Stafford brings critical demographic analysis and market research expertise to MB Capital Group's investment decisions. His deep understanding of population trends, economic indicators, and market dynamics helps identify the most promising investment opportunities in target markets.<br><br>Scott's demographic analysis capabilities enable MB Capital Group to make data-driven investment decisions based on population growth patterns, employment trends, income demographics, and housing demand forecasts. This analytical approach helps ensure that property acquisitions are positioned in markets with strong fundamentals and growth potential.<br><br>His research methodology and market intelligence provide MB Capital Group with competitive advantages in identifying emerging markets and timing investment decisions for optimal returns."
             },
             {
                 id: 5,
                 name: "Eric Stewart",
                 title: "Commercial Mortgage Broker",
-                photoUrl: "attached_assets/image_1752985475425.png",
+                photoUrl: "/attached_assets/image_1752985475425.png",
                 bio: "Eric Stewart serves as MB Capital Group's commercial mortgage broker, bringing extensive expertise in commercial real estate financing and lending relationships. His deep knowledge of the lending landscape ensures that MB Capital Group secures optimal financing terms for property acquisitions.<br><br>Eric's established relationships with banks, credit unions, and private lenders provide access to competitive financing options that enhance investment returns. His expertise in loan structuring, underwriting requirements, and market conditions helps MB Capital Group navigate complex financing scenarios and close deals efficiently.<br><br>His guidance on financing strategy and market conditions helps MB Capital Group maintain flexibility and leverage opportunities while managing financial risk appropriately."
             },
             {
                 id: 6,
                 name: "Jeannie Orlowski",
                 title: "Mentor & Real Estate Coach", 
-                photoUrl: "attached_assets/image_1752985628794.png",
+                photoUrl: "/attached_assets/image_1752985628794.png",
                 bio: "Jeannie Orlowski is an experienced real estate coach and mentor who brings valuable expertise in investor education and strategic guidance to MB Capital Group. Her background in coaching real estate investors provides insights into investor needs, concerns, and best practices for investor relations.<br><br>Jeannie's coaching experience helps MB Capital Group maintain excellent communication with limited partners and ensure that investor education remains a priority throughout the investment process. Her understanding of investor psychology and expectations contributes to the company's approach to transparency and investor satisfaction.<br><br>Her mentorship helps MB Capital Group continuously improve their investor relations processes and maintain the highest standards of professionalism in all investor communications."
             },
             {
                 id: 7,
                 name: "Dean Graziosi",
                 title: "Mentor & Entrepreneur",
-                photoUrl: "attached_assets/image_1752985671641.png",
+                photoUrl: "/attached_assets/image_1752985671641.png",
                 bio: "Dean Graziosi is a New York Times bestselling author, entrepreneur, and mentor who provides strategic business guidance to MB Capital Group. His extensive experience in building successful businesses and his expertise in market analysis contribute valuable perspective to the company's growth strategy.<br><br>Dean's entrepreneurial background and business development expertise help MB Capital Group maintain focus on scalable business practices and strategic growth opportunities. His insights into market trends and business optimization contribute to the company's operational efficiency and long-term success.<br><br>Through his mentorship, MB Capital Group benefits from Dean's proven strategies for business growth, market positioning, and maintaining competitive advantages in the real estate syndication industry."
             },
             {
                 id: 8,
                 name: "Tom Krol",
                 title: "Mentor & Podcast Host",
-                photoUrl: "attached_assets/image_1752985802815.png", 
+                photoUrl: "/attached_assets/image_1752985802815.png", 
                 bio: "Tom Krol is the host of the Wholesaling Inc. podcast and brings extensive expertise in real estate investing and market education to MB Capital Group. His experience in real estate education and market analysis provides valuable insights for the company's investment strategy and market positioning.<br><br>Tom's background in wholesaling and real estate education helps MB Capital Group stay current with market trends, emerging opportunities, and best practices in real estate investing. His podcast platform and industry connections provide access to market intelligence and networking opportunities.<br><br>His mentorship contributes to MB Capital Group's commitment to continuous learning and staying ahead of market trends in the competitive real estate syndication industry."
             }
         ];
@@ -1211,6 +1213,99 @@
     </script>
 
 <script>
+// Embedded blog posts data
+window.blogPosts = [
+    {
+        "id": 1,
+        "title": "7 Reasons Why Smart Investors Choose Multifamily Syndications",
+        "slug": "7-reasons-multifamily-syndications",
+        "excerpt": "Discover the key advantages of multifamily syndications that make them a preferred investment choice for accredited investors seeking passive income and long-term wealth building.",
+        "content": "Full blog post content here...",
+        "isPublished": true,
+        "createdAt": "2024-12-15"
+    },
+    {
+        "id": 2,
+        "title": "What to Expect in the 2025 Multifamily Market",
+        "slug": "2025-multifamily-market-outlook", 
+        "excerpt": "Expert analysis of the 2025 multifamily real estate market including trends, opportunities, and strategic insights for investors in Class B and C properties.",
+        "content": "Full blog post content here...",
+        "isPublished": true,
+        "createdAt": "2024-12-20"
+    },
+    {
+        "id": 3,
+        "title": "Tax Benefits of Multifamily Real Estate Investing",
+        "slug": "tax-benefits-multifamily-investing",
+        "excerpt": "Learn how multifamily real estate investments provide significant tax advantages including depreciation, cost segregation, and tax-deferred exchanges.",
+        "content": "Full blog post content here...", 
+        "isPublished": true,
+        "createdAt": "2025-01-05"
+    },
+    {
+        "id": 4,
+        "title": "How AI Is Transforming Multifamily Property Management",
+        "slug": "ai-transforming-property-management",
+        "excerpt": "Explore how artificial intelligence is revolutionizing multifamily property management through predictive analytics, automated maintenance, and enhanced tenant experiences.",
+        "content": "Full blog post content here...",
+        "isPublished": true,
+        "createdAt": "2025-01-10"
+    },
+    {
+        "id": 5,
+        "title": "Draft Blog Post - Market Analysis Update",
+        "slug": "draft-market-analysis-update",
+        "excerpt": "This is a draft post for upcoming market analysis content. Not yet published.",
+        "content": "Draft content here...",
+        "isPublished": false,
+        "createdAt": "2025-01-15"
+    }
+];
+
+// Embedded FAQ data
+window.faqs = [
+    {
+        "id": 1,
+        "question": "What is multifamily syndication and how does it work?",
+        "answer": "Multifamily syndication is a method of pooling capital from multiple investors to purchase apartment buildings that would be too expensive for individual investors. As the syndicator, MB Capital Group finds the property, secures financing, and manages the investment while you participate as a limited partner. You receive quarterly cash distributions from rental income and profits when the property is sold, typically after 3-7 years."
+    },
+    {
+        "id": 2,
+        "question": "What is the minimum investment amount?",
+        "answer": "Our minimum investment typically ranges from $50,000 to $100,000 per syndication, depending on the specific deal. This allows accredited investors to diversify their real estate portfolio without the large capital requirements of purchasing entire apartment buildings individually."
+    },
+    {
+        "id": 3,
+        "question": "How often do investors receive distributions?",
+        "answer": "Investors typically receive quarterly cash distributions from rental income. The amount varies based on property performance, but our target is 6-8% annual preferred returns. Additionally, investors participate in profits when the property is sold or refinanced."
+    },
+    {
+        "id": 4,
+        "question": "What types of properties does MB Capital Group focus on?",
+        "answer": "We specialize in Class B and C multifamily properties, specifically 2-4 story apartment buildings. These properties offer strong cash flow potential with value-add opportunities through strategic renovations, improved management, and market repositioning."
+    },
+    {
+        "id": 5,
+        "question": "How does MB Capital Group communicate with investors?",
+        "answer": "We provide regular quarterly reports detailing property performance, financial metrics, and any significant updates. Investors also receive annual tax documents (K-1s) and have access to our investor portal for document access and performance tracking."
+    },
+    {
+        "id": 6,
+        "question": "What are the tax benefits of multifamily syndication investments?",
+        "answer": "Multifamily real estate offers significant tax advantages including depreciation deductions, potential cost segregation benefits, and tax-deferred exchanges. These benefits can help offset income from other sources and improve overall after-tax returns."
+    },
+    {
+        "id": 7,
+        "question": "How do I get started as an investor with MB Capital Group?",
+        "answer": "Start by scheduling a consultation to discuss your investment goals and confirm accredited investor status. We'll explain our current opportunities, investment process, and answer your questions. Once you're ready, we'll guide you through the investment documentation and funding process."
+    },
+    {
+        "id": 8,
+        "question": "Can investors exit early from a syndication?",
+        "answer": "Syndication investments are typically illiquid with planned hold periods of 3-7 years. Early exits are generally not available except in extraordinary circumstances. This is why we recommend investing only capital that you won't need during the investment period."
+    }
+];
+
 // Embedded team members data
 window.teamMembers = [
   {
